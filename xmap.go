@@ -6,11 +6,12 @@ The implementation is not safe for concurrent use.
 
 Performance depends on how fast the provided eq() and hash() functions are.
 The implementation minimizes calls on the hash() function by caching hashes.
+Cached hashes are also used to minimize `eq()` calls.
 As a result, for simple types xmap outperforms Go's builtin map significantly
 (see BenchmarkIntMap). For complex types and inefficient hash() functions, performance
 will be worse.
 
-This package is experimental and is not yet production ready.
+This package is experimental and is not production ready yet.
 
 */
 package xmap
