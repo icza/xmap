@@ -1,6 +1,6 @@
 /*
 
-Package xmap provides a hashmap implementation that uses custom, user-provided
+Package xmap provides a hashmap implementation that uses custom, user-defined
 eq() and hash() functions for equality checks and hash calculation.
 The implementation is not safe for concurrent use.
 
