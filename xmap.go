@@ -33,7 +33,7 @@ type Map[K, V any] struct {
 	buckets []*entry[K, V]
 }
 
-// New creates a new Map, using the given eq and hash functions
+// New creates a new Map with default config, using the given eq and hash functions
 // for equality checks and hash calculations.
 func New[K, V any](
 	eq func(key1, key2 K) bool,
@@ -42,6 +42,8 @@ func New[K, V any](
 	return NewConfig[K, V](eq, hash, defaultConfig)
 }
 
+// New creates a new Map with the specified config, using the given eq and hash functions
+// for equality checks and hash calculations.
 func NewConfig[K, V any](
 	eq func(key1, key2 K) bool,
 	hash func(key K) uint32,
@@ -224,7 +226,7 @@ func (m *Map[K, V]) Cap() int {
 // If the capacity is bigger than the current capacity, the map will grow. If it's smaller, the map will shrink.
 //
 // If the requested capacity would be insufficient to hold current entries, the minimum required capacity
-// will be used instead (which is the map's current size).
+// will be used instead (which is the map's current length).
 func (m *Map[K, V]) SetCap(capacity int) {
 	if capacity < m.size {
 		capacity = m.size
